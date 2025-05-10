@@ -112,7 +112,7 @@ export default function Hero() {
 
     // Bauhaus shapes
     const shapes: BauhausShape[] = [];
-    const colors = ["#E63946", "#1D3557", "#FFD166", "#2A9D8F", "#9B5DE5"];
+    const colors = ["#E63946", "#22D3EE", "#FFD166", "#2A9D8F", "#D946EF","#F97316","#A3E635"];
 
     // Create initial shapes
     for (let i = 0; i < 15; i++) {

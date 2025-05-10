@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet,  SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 
 const navItems = [
@@ -180,10 +180,6 @@ export default function Header() {
             <SheetContent  side="right" className="border-l-4 border-black">
               <SheetHeader className="sr-only">
                 <SheetTitle>Edit profile</SheetTitle>
-                <SheetDescription>
-                  Make changes to your profile here. Click save when you're
-                  done.
-                </SheetDescription>
               </SheetHeader>
               <nav className="flex flex-col mt-12 space-y-4">
                 {navItems.map((item, index) => (
