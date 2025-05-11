@@ -4,11 +4,6 @@ import "./globals.css";
 import Header from "@/components/includes/header";
 import { ThemeProvider } from "@/components/theme-provider";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
@@ -27,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistMono.variable} ${geistSans.variable} antialiased`}
+        className={`${geistMono.className} antialiased`}
       >
         <ThemeProvider
           attribute="class"

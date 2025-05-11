@@ -4,14 +4,21 @@ import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Sheet,  SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { Menu } from "lucide-react";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { Menu,} from "lucide-react";
+import { useTheme } from "next-themes";
 
 const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/projects", label: "Projects" },
-  { href: "/contact", label: "Contact" },
+  { href: "#hero", label: "Home" },
+  { href: "#about", label: "About" },
+  { href: "#projects", label: "Projects" },
+  { href: "#contact", label: "Contact" },
 ];
 
 // Animation variants
@@ -84,11 +91,22 @@ const logoShapeVariants = {
 };
 
 export default function Header() {
+  const [open, setOpen] = useState<boolean>(false);
   const [activeItem, setActiveItem] = useState("/");
+
+  const { setTheme, theme } = useTheme();
+
+  const handleToggleTheme = () => {
+    if (theme === "dark") {
+      setTheme("light");
+    } else {
+      setTheme("dark");
+    }
+  };
 
   return (
     <motion.header
-      className="fixed top-0 left-0 right-0 z-50 py-4 bg-background backdrop-blur-sm bg-opacity-90 border-b-4 border-black"
+      className="fixed top-0 left-0 right-0 z-50 py-4 bg-background backdrop-blur-sm bg-opacity-90 border-b-4 border-black dark:border-white"
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{
@@ -97,7 +115,7 @@ export default function Header() {
         damping: 15,
       }}
     >
-      <div className="container mx-auto flex justify-between items-center">
+      <div className="container px-2 mx-auto flex justify-between items-center">
         <motion.div
           initial="hidden"
           animate="visible"
@@ -136,29 +154,39 @@ export default function Header() {
           </Link>
         </motion.div>
 
-        {/* Desktop Navigation */}
-        <motion.nav
-          className="hidden md:flex space-x-1"
-          variants={navContainer}
-          initial="hidden"
-          animate="visible"
-        >
-          {navItems.map((item) => (
-            <motion.div key={item.href} variants={navItem} whileHover="hover">
-              <Link
-                href={item.href}
-                className={`px-4 py-2 font-medium text-lg transition-all ${
-                  activeItem === item.href
-                    ? "bg-black text-white"
-                    : "hover:bg-bauhaus-blue hover:text-white"
-                }`}
-                onClick={() => setActiveItem(item.href)}
-              >
-                {item.label}
-              </Link>
-            </motion.div>
-          ))}
-        </motion.nav>
+        <div className="flex items-center space-x-2">
+          {/* Desktop Navigation */}
+          <motion.nav
+            className="hidden md:flex space-x-2"
+            variants={navContainer}
+            initial="hidden"
+            animate="visible"
+          >
+            {navItems.map((item) => (
+              <motion.div key={item.href} variants={navItem} whileHover="hover">
+                <Link
+                  href={item.href}
+                  className={`px-4 py-2 font-medium text-lg transition-all ${
+                    activeItem === item.href
+                      ? "bg-black dark:bg-white dark:text-black text-white"
+                      : "hover:bg-bauhaus-blue hover:text-white"
+                  }`}
+                  onClick={() => setActiveItem(item.href)}
+                >
+                  {item.label}
+                </Link>
+              </motion.div>
+            ))}
+          </motion.nav>
+          {/* <Button
+            size={"icon"}
+            className="size-10 border-2 p-2 [&_svg:not([class*='size-'])]:size-5 cursor-pointer"
+            onClick={handleToggleTheme}
+          >
+            {theme === "dark" ? <Sun /> : <Moon />}
+            <span className="sr-only">Toggle Theme</span>
+          </Button> */}
+        </div>
 
         {/* Mobile Navigation */}
         <motion.div
@@ -167,17 +195,17 @@ export default function Header() {
           transition={{ delay: 0.5, duration: 0.3 }}
           className="md:hidden"
         >
-          <Sheet>
+          <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild className="md:hidden">
               <Button
                 variant="outline"
                 size="icon"
-                className="brutalist-outline border-none p-0 shadow-none [&_svg:not([class*='size-'])]:size-6"
+                className="brutalist-outline border-none p-0 shadow-none [&_svg:not([class*='size-'])]:size-6 cursor-pointer"
               >
                 <Menu />
               </Button>
             </SheetTrigger>
-            <SheetContent  side="right" className="border-l-4 border-black">
+            <SheetContent side="right" className="border-l-4 border-black">
               <SheetHeader className="sr-only">
                 <SheetTitle>Edit profile</SheetTitle>
               </SheetHeader>
@@ -204,6 +232,7 @@ export default function Header() {
                       }`}
                       onClick={() => {
                         setActiveItem(item.href);
+                        setOpen(false);
                       }}
                     >
                       {item.label}

@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 interface BauhausShape {
   type: number;
@@ -91,6 +92,7 @@ const heroBoxVariants = {
 };
 
 export default function Hero() {
+	const router = useRouter();
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   // Animate Bauhaus geometric shapes
@@ -192,14 +194,14 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative h-screen flex items-center overflow-hidden">
+    <section id="hero" className="relative h-screen flex items-center overflow-hidden">
       {/* Background canvas */}
       <canvas ref={canvasRef} className="absolute h-full inset-0 z-0" />
 
       {/* Content */}
-      <div className="container mx-auto relative z-10">
+      <div className="container px-2 mx-auto relative z-10">
         <motion.div
-          className="max-w-2xl brutalist-shadow p-8 bg-white border-4 border-black"
+          className="max-w-2xl brutalist-shadow p-8 bg-primary border-4"
           variants={heroBoxVariants}
           initial="hidden"
           animate="visible"
@@ -267,7 +269,8 @@ export default function Hero() {
             >
               <Button
                 variant="outline"
-                className="border-4 border-black bg-white text-black hover:bg-bauhaus-yellow hover:text-black font-bold px-8 py-6 text-lg brutalist-shadow"
+								onClick={() => router.push("#about")}
+                className="border-4 dark:border-border hover:bg-bauhaus-yellow dark:hover:bg-bauhaus-yellow hover:text-black font-bold px-8 py-6 text-lg brutalist-shadow"
               >
                 About Me
               </Button>
