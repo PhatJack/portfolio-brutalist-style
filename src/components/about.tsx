@@ -140,7 +140,11 @@ export default function About() {
                 asChild
                 className="bg-black hover:bg-bauhaus-yellow hover:text-black text-white font-bold px-8 py-6 text-lg brutalist-shadow"
               >
-                <Link href={""} download={true} target="_blank">
+                <Link
+                  href={"/Nguyen_Tien_Phat_CV.pdf"}
+                  download={true}
+                  target="_blank"
+                >
                   Download Resume
                 </Link>
               </Button>
@@ -270,7 +274,8 @@ export default function About() {
                 transition={{ delay: 0.7, duration: 0.5 }}
                 viewport={{ once: true }}
               >
-                &quot;Work hard in silence, let your success be your noise.&quot;
+                &quot;Work hard in silence, let your success be your
+                noise.&quot;
                 <footer className="text-sm mt-2 font-bold">— Annoymous</footer>
               </motion.blockquote>
             </motion.div>
