@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import HighLightText from "./highlight-text";
 
 interface BauhausShape {
   type: number;
@@ -92,7 +93,7 @@ const heroBoxVariants = {
 };
 
 export default function Hero() {
-	const router = useRouter();
+  const router = useRouter();
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   // Animate Bauhaus geometric shapes
@@ -114,7 +115,15 @@ export default function Hero() {
 
     // Bauhaus shapes
     const shapes: BauhausShape[] = [];
-    const colors = ["#E63946", "#22D3EE", "#FFD166", "#2A9D8F", "#D946EF","#F97316","#A3E635"];
+    const colors = [
+      "#E63946",
+      "#22D3EE",
+      "#FFD166",
+      "#2A9D8F",
+      "#D946EF",
+      "#F97316",
+      "#A3E635",
+    ];
 
     // Create initial shapes
     for (let i = 0; i < 15; i++) {
@@ -194,7 +203,10 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="hero" className="relative h-screen flex items-center overflow-hidden">
+    <section
+      id="hero"
+      className="relative h-screen flex items-center overflow-hidden"
+    >
       {/* Background canvas */}
       <canvas ref={canvasRef} className="absolute h-full inset-0 z-0" />
 
@@ -243,9 +255,21 @@ export default function Hero() {
             initial="hidden"
             animate="visible"
           >
-            Passionate front-end developer with a creative mindset and strong
-            problem-solving skills, I specialize in translating ideas into
-            functional code.
+            I am a seinor student at the{" "}
+            <HighLightText
+              text="Sai Gon University"
+              backgroundColor="blue"
+              link="https://www.sgu.edu.vn"
+            />{" "}
+            of{" "}
+            <HighLightText
+              text="HoChiMinh city"
+              backgroundColor="yellow"
+              link="https://vietnam.travel/places-to-go/southern-vietnam/ho-chi-minh-city"
+            />
+            , majoring in Software Engineer. I am passionate about web
+            development and design, and I am always eager to learn new
+            technologies and improve my skills.
           </motion.p>
           <motion.div
             className="flex flex-wrap gap-4"
@@ -269,7 +293,7 @@ export default function Hero() {
             >
               <Button
                 variant="outline"
-								onClick={() => router.push("#about")}
+                onClick={() => router.push("#about")}
                 className="border-4 dark:border-border hover:bg-bauhaus-yellow dark:hover:bg-bauhaus-yellow hover:text-black font-bold px-8 py-6 text-lg brutalist-shadow"
               >
                 About Me

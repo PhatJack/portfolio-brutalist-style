@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import HighLightText from "./highlight-text";
 
 // Animation variants
 const fadeInUp = {
@@ -93,13 +94,17 @@ export default function About() {
               variants={fadeInUp}
             >
               I&apos;m{" "}
-              <span className="font-semibold bg-bauhaus-red text-white px-1">
-                Nguyen Tien Phat
-              </span>
+              <HighLightText
+                text="Nguyen Tien Phat"
+                className="font-semibold text-white"
+                backgroundColor="red"
+              />
               , a passionate{" "}
-              <span className="bg-bauhaus-yellow font-semibold px-1 text-white">
-                frontend developer
-              </span>{" "}
+              <HighLightText
+                text="frontend developer"
+                className="font-semibold text-white"
+                backgroundColor="yellow"
+              />{" "}
               with a love for creating unique and engaging digital experiences.
               I specialize in building user-friendly interfaces and interactive
               web applications that prioritize usability and accessibility. I
@@ -107,9 +112,11 @@ export default function About() {
               serve a purpose. I am constantly exploring new technologies and
               design trends to enhance my skills and stay current in the
               ever-evolving world of{" "}
-              <span className="bg-bauhaus-blue text-white font-semibold px-1">
-                web development
-              </span>
+              <HighLightText
+                text="web development"
+                className="font-semibold text-white"
+                backgroundColor="blue"
+              />
               .
             </motion.p>
 
